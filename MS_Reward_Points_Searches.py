@@ -6,6 +6,7 @@ from tqdm import tqdm
 import random
 import time
 # Use this Command to install all requirements: - pip install selenium pytrends tqdm time random
+# You also need to install Selenium Edge Driver if you are using Edge Browser.
 
 
 def loop_searches(url, search_element_xpath, list_of_topics, sleep_time=2, break_in_between=5, time_to_sign_in=15):

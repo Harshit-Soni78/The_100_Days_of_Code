@@ -26,6 +26,7 @@ Intro for Version Control Using Git and the Command :
 GitHub and remote Repositories :
     Make an account of GitHub and then make a new repository, and copy the address of the repository.
     - git remote add origin {link} : origin is the name of your remote. But we can name it as we want.
+    - git branch -M main : 
     - git push -u <origin_name> <branch_name> : main branch is default branch, -u flag here is link the remote and local repo.
                                     {By this we can upload our local repositories to remote repositories.}
 
