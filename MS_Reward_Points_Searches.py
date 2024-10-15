@@ -7,6 +7,7 @@ import random
 import time
 # Use this Command to install all requirements: - pip install selenium pytrends tqdm time random
 # You also need to install Selenium Edge Driver if you are using Edge Browser.
+# Use this Command on cmd to Run { python -u "PATH\MS_Reward_Points_Searches.py" }
 
 
 def loop_searches(url, search_element_xpath, list_of_topics, sleep_time=2, break_in_between=5, time_to_sign_in=15):
@@ -15,14 +16,19 @@ def loop_searches(url, search_element_xpath, list_of_topics, sleep_time=2, break
     driver = webdriver.Edge(options=edge_options)
     time.sleep(time_to_sign_in)
     # for topic in list_of_topics:
-    for topic in tqdm(list_of_topics, desc="Searching Topics"):
-        driver.get(url)
-        search_element = driver.find_element(By.XPATH, value=search_element_xpath)
-        search_element.send_keys(topic)
+    try:
+        for topic in tqdm(list_of_topics, desc="Searching Topics"):
+            driver.get(url)
+            search_element = driver.find_element(By.XPATH, value=search_element_xpath)
+            search_element.send_keys(topic)
+            time.sleep(sleep_time)
+            search_element.send_keys(Keys.ENTER)
+            time.sleep(break_in_between)
         time.sleep(sleep_time)
-        search_element.send_keys(Keys.ENTER)
-        time.sleep(break_in_between)
-    time.sleep(sleep_time)
+    except:
+        driver.close()
+        print("Privious Attempt Failed!\nRetrying !!")
+        loop_searches(url, search_element_xpath, list_of_topics, sleep_time, break_in_between, time_to_sign_in)    
     driver.close()
 
 
@@ -56,8 +62,6 @@ Element_XPATH = '/html/body/div[1]/div/div[3]/div[2]/form/div[1]/div/textarea'
 
 try:
     LIST_OF_TOPICS = list_of_trending_searches(N)
-    print(f"LIST_OF_TOPICS = {LIST_OF_TOPICS}")
-    loop_searches(URL, Element_XPATH, LIST_OF_TOPICS)
 except:
     LIST_OF_TOPICS = ['Types of fossil fuel power plants', 'How coal-fired power plants work',
                       'Natural gas power plants explained', 'Oil-fired power plants',
@@ -93,8 +97,11 @@ except:
                       'Minecraft',
                       'Fortnite', 'Roblox', 'Among Us']
     (random.shuffle(LIST_OF_TOPICS))
-    (random.shuffle(LIST_OF_TOPICS))
-    print(f"LIST_OF_TOPICS = {LIST_OF_TOPICS[:N]}")
-    loop_searches(URL, Element_XPATH, LIST_OF_TOPICS[:N])
+
+
+(random.shuffle(LIST_OF_TOPICS))
+print(f"LIST_OF_TOPICS = {LIST_OF_TOPICS[:N]}")
+
+loop_searches(URL, Element_XPATH, LIST_OF_TOPICS[:N])
 
 print("Done Searches")
