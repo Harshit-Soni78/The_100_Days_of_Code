@@ -53,7 +53,7 @@ def list_of_trending_searches(length: int):
 
 print("""Hello !!
 This is the script to complete the microsoft search reward task.
-After running this script, please sign in the id. It will give time of 15 sec to do so.""")
+After running this script, please sign in the id. It will give time of 15 sec to do so.\n""")
 
 N = int(input("Please Enter the number of searches you want to do:- "))
 
