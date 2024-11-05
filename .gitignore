@@ -7,7 +7,7 @@ token.txt
 *.db
 *instance/
 What's_in_this_Repo.txt
-gitignore
+.gitignore
 ### Also any macOS specific files
 .DS_Store
 .AppleDouble
